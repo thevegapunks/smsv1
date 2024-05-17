@@ -1,6 +1,6 @@
 package com.digitechbb.smsv1.enums;
 
-public enum Function {
+public enum Fonction {
     SECRETARY,
     DG,
     OTHER

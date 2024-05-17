@@ -18,7 +18,7 @@ public class Professor extends Person {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String schoolLevel;
-    private String ModeOfPayment;
+    private String modeOfPayment;
     private LocalDate startDate;
     private Float salary;
 }

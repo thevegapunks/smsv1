@@ -1,6 +1,6 @@
 package com.digitechbb.smsv1.model.entities;
 
-import com.digitechbb.smsv1.enums.Function;
+import com.digitechbb.smsv1.enums.Fonction;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -18,9 +18,9 @@ public class Employee extends Person{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String ModeOfPayment;
+    private String modeOfPayment;
     private LocalDate startDate;
     private Float salary;
-    private Function function;
+    private Fonction fonction;
 
 }
