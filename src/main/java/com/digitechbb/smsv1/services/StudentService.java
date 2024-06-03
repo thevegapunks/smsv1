@@ -1,15 +1,19 @@
 package com.digitechbb.smsv1.services;
 
+import com.digitechbb.smsv1.model.dtos.StudentDto;
 import com.digitechbb.smsv1.model.entities.Student;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface StudentService {
      Student saveStudent(Student student);
-     List<Student> getAll();
-     Student updateStudent(Student student);
+
+     StudentDto saveStudentDto(StudentDto studentDto);
+
+     List<StudentDto> getAll();
+     StudentDto updateStudent(StudentDto studentDto);
      void delete(Long id);
-     Optional<Student> getById(Long id);
+     StudentDto getById(Long id);
+     Student getStudentById(Long id);
 
 }
