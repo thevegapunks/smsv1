@@ -2,6 +2,7 @@ package com.digitechbb.smsv1.model.entities;
 
 import com.digitechbb.smsv1.enums.Statut;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,7 +15,7 @@ public class Account {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    @Column(unique = true)
+    @Column(unique = true)//@NotBlank   des annotations de validations spring boot
     private String login;
     private String password;
     private Boolean activated;

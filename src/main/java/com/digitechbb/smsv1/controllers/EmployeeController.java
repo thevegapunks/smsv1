@@ -4,6 +4,7 @@ import com.digitechbb.smsv1.model.dtos.EmployeeDto;
 import com.digitechbb.smsv1.services.EmployeeService;
 import lombok.AllArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,32 +19,41 @@ public class EmployeeController  {
     private EmployeeService employeeService;
 
     @PostMapping
-    public EmployeeDto save(@RequestBody EmployeeDto employeeDto){
-        return employeeService.saveEmployee(employeeDto);
+    public ResponseEntity<EmployeeDto> save(@RequestBody EmployeeDto employeeDto){
+        EmployeeDto employeeDto1 = employeeService.saveEmployee(employeeDto);
+        return ResponseEntity.ok(employeeDto1);
     }
     @GetMapping
-    public List<EmployeeDto> getAllEmployees(){
-        return employeeService.getAllEmployees();
+    public ResponseEntity<List<EmployeeDto>> getAllEmployees(){
+        List<EmployeeDto> employeeDtoList = employeeService.getAllEmployees();
+        return ResponseEntity.ok(employeeDtoList);
     }
 
     @GetMapping("/{id}")
-    public EmployeeDto getById(@PathVariable Long id){
-        return employeeService.getEmployeeById(id);
+    public ResponseEntity<EmployeeDto> getById(@PathVariable Long id){
+        EmployeeDto employeeDto = employeeService.getEmployeeById(id);
+        return ResponseEntity.ok(employeeDto);
     }
 
     @GetMapping("/findByCin/{cin}")
-    public EmployeeDto findEmployeeByCin(@PathVariable String cin){
-        return employeeService.findEmployeeByCin(cin);
+    public ResponseEntity<EmployeeDto> findEmployeeByCin(@PathVariable String cin){
+        EmployeeDto employeeDto = employeeService.findEmployeeByCin(cin);
+        return ResponseEntity.ok(employeeDto);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteById(@PathVariable Long id){
-         employeeService.deleteEmployeeById(id);
+    public ResponseEntity<Void> deleteById(@PathVariable Long id){
+         boolean isDeleted = employeeService.deleteEmployeeById(id);
+         if (isDeleted)
+             return ResponseEntity.noContent().build();
+         else
+             return ResponseEntity.notFound().build();
     }
 
     @PutMapping
-    public EmployeeDto updateEmployee(@RequestBody EmployeeDto employeeDto){
-        return employeeService.updateEmployee(employeeDto);
+    public ResponseEntity<EmployeeDto> updateEmployee(@RequestBody EmployeeDto employeeDto){
+        EmployeeDto employeeDto1 = employeeService.updateEmployee(employeeDto);
+        return ResponseEntity.ok(employeeDto1);
     }
 
 }

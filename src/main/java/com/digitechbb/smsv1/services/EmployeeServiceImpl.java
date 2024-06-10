@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -40,20 +41,21 @@ public class EmployeeServiceImpl implements EmployeeService{
     }
 
     @Override
-    public void deleteEmployeeById(Long id) {
-        employeeRepository.deleteById(id);
+    public boolean deleteEmployeeById(Long id) {
+        Employee employee = employeeRepository.findById(id).orElse(null);
+        if (employee!=null){
+            employeeRepository.deleteById(id);
+            return true;
+        }else {
+            return false;
+        }
+
     }
 
     @Override
     public List<EmployeeDto> getAllEmployees() {
-        List<Employee> employeeList = employeeRepository.findAll();
-        if (employeeList == null)
-            return null;
-        List<EmployeeDto> employeeDtos = new ArrayList<>();
-        for (Employee e: employeeList ) {
-            employeeDtos.add(employeeMapper.toDto(e));
-        }
-        return employeeDtos;
+
+        return employeeRepository.findAll().stream().map(employee -> employeeMapper.toDto(employee)).collect(Collectors.toList());
     }
 
     @Override

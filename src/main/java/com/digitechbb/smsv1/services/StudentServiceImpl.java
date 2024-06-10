@@ -7,8 +7,8 @@ import com.digitechbb.smsv1.repositories.StudentRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @AllArgsConstructor
@@ -24,64 +24,50 @@ public class StudentServiceImpl implements StudentService {
 
     @Override
     public StudentDto saveStudentDto(StudentDto studentDto) {
-        Student student=studentMapper.ToStudent(studentDto);
-        Student  savedStudent = studentRepository.save(student);
-        return studentMapper.studentToDto(savedStudent);
+        Student student = studentMapper.ToStudent(studentDto);
+        Student savedStudent = studentRepository.save(student);
+        return studentMapper.toDto(savedStudent);
     }
 
 
     @Override
     public List<StudentDto> getAll() {
 
-        List<Student> students=studentRepository.findAll();
+        return studentRepository.findAll().stream().map(studentMapper::toDto).collect(Collectors.toList());
 
-        if (students==null)
-            return null;
-        List<StudentDto> studentsDtos = new ArrayList<>();
-        for(Student s : students){
-            studentsDtos.add(studentMapper.studentToDto(s))    ;
-        }
-        return studentsDtos;
-//        return students.stream()
-//                .map(studentMapper::studentToDto)
-//                .collect(Collectors.toList());
     }
+
     @Override
     public StudentDto updateStudent(StudentDto studentDto) {
 
         Student existingStudent = studentRepository.findByStudentNumber(studentDto.studentNumber());
-        if (existingStudent==null) {
+        if (existingStudent == null) {
             return null;
         }
 
-        existingStudent.setStudentNumber(studentDto.studentNumber());
-        existingStudent.setFirstName(studentDto.firstName());
-        existingStudent.setLastName(studentDto.lastName());
-        existingStudent.setAddress(studentDto.address());
-        existingStudent.setGender(studentDto.gender());
-        existingStudent.setDateOfBirth(studentDto.dateOfBirth());
-        existingStudent.setEmail(studentDto.email());
-        existingStudent.setPhone(studentDto.phone());
-        existingStudent.setStatut(studentDto.statut());
-        existingStudent.setSchoolLevel(studentDto.schoolLevel());
-        existingStudent.setModeOfPayment(studentDto.modeOfPayment());
-        existingStudent.setStartDate(studentDto.startDate());
-        existingStudent.setParentContact(studentDto.parentContact());
+        Student updatedStudent = studentMapper.ToStudent(studentDto);
 
-        Student updatedStudent = studentRepository.save(existingStudent);
+        updatedStudent.setId(existingStudent.getId());
 
-
-        return studentMapper.studentToDto(updatedStudent);
+        return studentMapper.toDto(studentRepository.save(updatedStudent));
     }
 
     @Override
-    public void delete(Long id) {
-        studentRepository.deleteById(id);
+    public boolean delete(Long id) {
+        Student student = studentRepository.findById(id).orElse(null);
+        if (student != null) {
+            studentRepository.deleteById(id);
+            return true;
+
+        } else {
+            return false;
+        }
+
     }
 
     @Override
     public StudentDto getById(Long id) {
-        return studentMapper.studentToDto(studentRepository.findById(id).orElse(null));
+        return studentMapper.toDto(studentRepository.findById(id).orElse(null));
     }
 
     @Override

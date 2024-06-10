@@ -9,7 +9,7 @@ public interface AbsenceService {
     AbsenceDto updateAbsence(AbsenceDto absenceDto);
     List<AbsenceDto> getAll();
     AbsenceDto findById(Long id);
-    void deleteAbsenceById(Long id);
+    boolean deleteAbsenceById(Long id);
 
 
 }

@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
 public class StudentMapperImpl implements StudentMapper{
 
     @Override
-    public StudentDto studentToDto(Student student) {
+    public StudentDto toDto(Student student) {
 //        StudentDto studentDto = new StudentDto();
         if (student == null){
             return null;

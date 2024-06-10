@@ -9,7 +9,7 @@ public interface AccountService {
    AccountDto updateAccount(AccountDto accountDto);
     List<AccountDto> getAll();
     AccountDto findAccountByLogin(String login);
-    void deleteById(Long id);
-   void deleteByLogin(String login);
+    boolean deleteById(Long id);
+   boolean deleteByLogin(String login);
 
 }

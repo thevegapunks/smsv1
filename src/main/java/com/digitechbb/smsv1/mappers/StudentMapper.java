@@ -4,6 +4,6 @@ import com.digitechbb.smsv1.model.dtos.StudentDto;
 import com.digitechbb.smsv1.model.entities.Student;
 
 public interface StudentMapper {
-     StudentDto studentToDto(Student student);
+     StudentDto toDto(Student student);
      Student ToStudent(StudentDto studentDto);
 }
