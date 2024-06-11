@@ -3,13 +3,16 @@ package com.digitechbb.smsv1.model.dtos;
 import com.digitechbb.smsv1.enums.Gender;
 import com.digitechbb.smsv1.enums.Statut;
 
+
+
 import java.time.LocalDate;
 
 public record StudentDto(
+        String studentNumber,
         String firstName,
         String lastName,
         String address,
-        com.digitechbb.smsv1.enums.Gender Gender,
+        Gender gender,
         LocalDate dateOfBirth,
         String email,
         String phone,

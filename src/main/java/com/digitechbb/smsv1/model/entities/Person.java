@@ -20,10 +20,11 @@ public abstract class  Person {
     private String lastName;
     private String address;
     @Enumerated(EnumType.STRING)
-    private Gender Gender;
+    private Gender gender;
     private LocalDate dateOfBirth;
     private String email;
     private String phone;
+    @Enumerated(EnumType.STRING)
     private Statut statut;
 
 }
