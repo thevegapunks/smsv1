@@ -11,5 +11,4 @@ public interface AbsenceService {
     AbsenceDto findById(Long id);
     boolean deleteAbsenceById(Long id);
 
-
 }

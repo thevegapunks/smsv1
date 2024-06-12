@@ -23,7 +23,9 @@ public class Absence {
     private LocalDate date;
     private LocalTime hour;
     private int numberOfHour;
-    private String subject;
+    @ManyToOne
+    @JoinColumn(name = "subjectId")
+    private Subject subject;//switch it to Subject type and update the AbsenceMapper
     private String reason;
     @ManyToOne
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)

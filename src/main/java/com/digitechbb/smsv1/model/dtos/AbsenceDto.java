@@ -4,12 +4,13 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 public record AbsenceDto(
-         String absenceNumber,
-         LocalDate date,
-         LocalTime hour,
-         int numberOfHour,
-         String subject,
-         String reason,
-         Long studentId
+        String absenceNumber,
+        LocalDate date,
+        LocalTime hour,
+        int numberOfHour,
+        Long subjectId,
+        String reason,
+        Long studentId
+
 ) {
 }

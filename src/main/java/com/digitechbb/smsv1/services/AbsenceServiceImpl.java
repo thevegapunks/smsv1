@@ -29,7 +29,6 @@ public class AbsenceServiceImpl implements AbsenceService {
     @Override
     public AbsenceDto updateAbsence(AbsenceDto absenceDto) {
         Absence absence = absenceRepository.findAbsenceByAbsenceNumber(absenceDto.absenceNumber()).orElseThrow(() -> new ResourceNotFoundException("Not Found Absence with absenceNumber : " + absenceDto.absenceNumber()));
-//        if (absence == null) return null;
         Absence updatedEmployee = absenceMapper.toEntity(absenceDto);
         updatedEmployee.setId(absence.getId());
 
