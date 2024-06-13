@@ -23,6 +23,7 @@ public class Absence {
     private LocalDate date;
     private LocalTime hour;
     private int numberOfHour;
+    //it is better to use session à la place de (subject+date+hour+numberOfHour)
     @ManyToOne
     @JoinColumn(name = "subjectId")
     private Subject subject;//switch it to Subject type and update the AbsenceMapper

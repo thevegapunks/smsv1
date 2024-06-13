@@ -16,7 +16,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ClassroomController {
 
-    private  ClassroomService classroomService;
+    private ClassroomService classroomService;
 
     @PostMapping
     public ResponseEntity<ClassroomDto> save(@RequestBody ClassroomDto classroomDto) {

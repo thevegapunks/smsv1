@@ -5,6 +5,7 @@ import com.digitechbb.smsv1.model.dtos.ClassroomDto;
 import com.digitechbb.smsv1.model.entities.Classroom;
 import com.digitechbb.smsv1.repositories.ClassroomRepository;
 //import com.digitechbb.smsv1.services.ClassroomService;
+import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,13 +14,13 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
+@AllArgsConstructor
 public class ClassroomServiceImpl implements ClassroomService {
 
-    @Autowired
-    private ClassroomRepository classroomRepository;
 
-    @Autowired
-    private ClassroomMapper classroomMapper;
+    private final ClassroomRepository classroomRepository;
+
+    private final ClassroomMapper classroomMapper;
 
     @Override
     public ClassroomDto createClassroom(ClassroomDto classroomDto) {

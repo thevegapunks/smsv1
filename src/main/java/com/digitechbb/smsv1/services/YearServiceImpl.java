@@ -39,7 +39,7 @@ public class YearServiceImpl implements YearService {
                 .collect(Collectors.toList());
     }
 
-    @Override
+    @Override  // this not an update it is an insert need to fixed
     public YearDto updateYear(YearDto yearDto) {
         Year year = yearMapper.toEntity(yearDto);
         year = yearRepository.save(year);
@@ -48,7 +48,8 @@ public class YearServiceImpl implements YearService {
 
     @Override
     public boolean delete(Long id) {
-        if (yearRepository.existsById(id)) {
+        // if (yearRepository.existsById(id)) {    //existsById call findById(id).isPresent();
+        if (yearRepository.findById(id).isPresent()) {
             yearRepository.deleteById(id);
             return true;
         }

@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 public class ScholarLevelController {
 
-    private final ScholarLevelService scholarLevelService;
+    private final ScholarLevelService scholarLevelService;//should ScholarLevelService be final ??
 
     @PostMapping("/saveScholarLevel")
     public ResponseEntity<ScholarLevel> saveScholarLevel(@RequestBody ScholarLevel scholarLevel) {

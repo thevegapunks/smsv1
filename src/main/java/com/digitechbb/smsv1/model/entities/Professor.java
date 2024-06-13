@@ -6,6 +6,8 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -23,4 +25,6 @@ public class Professor extends Person {
     @OneToOne
     @JoinColumn(name = "accountId")
     private Account account;
+    @OneToMany(mappedBy = "professor",cascade = CascadeType.ALL)
+    private List<Assignment> assignments;
 }
